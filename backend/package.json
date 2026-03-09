@@ -1,0 +1,26 @@
+{
+  "name": "pet-care-backend",
+  "version": "1.0.0",
+  "description": "Pet Care Manager - Backend API",
+  "main": "src/config/server.ts",
+  "scripts": {
+    "dev": "nodemon --watch src --ext ts --exec ts-node src/config/server.ts",
+    "build": "tsc",
+    "start": "node dist/config/server.js",
+    "prisma:generate": "prisma generate",
+    "prisma:migrate": "prisma migrate dev"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.10.2",
+    "express": "^4.18.2",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^20.11.24",
+    "nodemon": "^3.1.0",
+    "prisma": "^5.10.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.2"
+  }
+}
