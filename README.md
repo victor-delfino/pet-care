@@ -9,7 +9,7 @@ Projeto construído como portfólio com foco em arquitetura de software profissi
 ```
 pet-care/
   backend/    # API REST — Node.js, TypeScript, Express, Prisma, PostgreSQL
-  frontend/   # Interface web — React, TypeScript, Vite, TailwindCSS (em breve)
+  frontend/   # Interface web — React, TypeScript, Vite, TailwindCSS
 ```
 
 ## Stack
@@ -37,3 +37,4 @@ npm run dev
 ## Documentação
 
 - [Backend](./backend/README.md)
+- [Frontend](./frontend/README.md)
