@@ -3,7 +3,10 @@ import { LandingPage } from "./pages/LandingPage";
 import { AppLayout } from "./pages/AppLayout";
 import { DashboardPage } from "./pages/DashboardPage";
 import { AnimalsPage } from "./pages/AnimalsPage";
-import { PlaceholderPage } from "./pages/PlaceholderPage";
+import { VaccinesPage } from "./pages/VaccinesPage";
+import { VetVisitsPage } from "./pages/VetVisitsPage";
+import { FeedingsPage } from "./pages/FeedingsPage";
+import { RemindersPage } from "./pages/RemindersPage";
 
 export function App() {
   return (
@@ -13,46 +16,10 @@ export function App() {
         <Route path="/app" element={<AppLayout />}>
           <Route index element={<DashboardPage />} />
           <Route path="animals" element={<AnimalsPage />} />
-          <Route
-            path="vaccines"
-            element={
-              <PlaceholderPage
-                title="Vaccines"
-                description="Track vaccination schedules and records"
-                icon="💉"
-              />
-            }
-          />
-          <Route
-            path="vet-visits"
-            element={
-              <PlaceholderPage
-                title="Vet Visits"
-                description="Manage veterinary consultation history"
-                icon="🩺"
-              />
-            }
-          />
-          <Route
-            path="feeding"
-            element={
-              <PlaceholderPage
-                title="Feeding"
-                description="Control nutrition and feeding schedules"
-                icon="🍖"
-              />
-            }
-          />
-          <Route
-            path="reminders"
-            element={
-              <PlaceholderPage
-                title="Reminders"
-                description="Set up care reminders and notifications"
-                icon="🔔"
-              />
-            }
-          />
+          <Route path="vaccines" element={<VaccinesPage />} />
+          <Route path="vet-visits" element={<VetVisitsPage />} />
+          <Route path="feeding" element={<FeedingsPage />} />
+          <Route path="reminders" element={<RemindersPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
