@@ -5,7 +5,7 @@ const menuItems = [
   { path: "/app/animals", label: "Animals", icon: "🐾" },
   { path: "/app/vaccines", label: "Vaccines", icon: "💉" },
   { path: "/app/vet-visits", label: "Vet Visits", icon: "🩺" },
-  { path: "/app/feeding", label: "Feeding", icon: "🍖" },
+  { path: "/app/feedings", label: "Feeding", icon: "🍖" },
   { path: "/app/reminders", label: "Reminders", icon: "🔔" },
 ];
 

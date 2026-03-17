@@ -17,6 +17,10 @@ export default defineConfig({
     port: 5173,
     proxy: {
       "/animals": "http://localhost:3333",
+      "/vaccines": "http://localhost:3333",
+      "/vet-visits": "http://localhost:3333",
+      "/feedings": "http://localhost:3333",
+      "/reminders": "http://localhost:3333",
     },
   },
 });
