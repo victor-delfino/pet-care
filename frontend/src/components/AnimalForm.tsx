@@ -1,10 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CreateAnimalInput } from "../types/animal";
+
+interface AnimalFormInitialValues {
+  name?: string;
+  species?: string;
+  breed?: string | null;
+  birthDate?: string | null;
+  weight?: number | null;
+}
 
 interface AnimalFormProps {
   onSubmit: (data: CreateAnimalInput) => Promise<void>;
   onCancel?: () => void;
-  initialValues?: Partial<CreateAnimalInput>;
+  initialValues?: AnimalFormInitialValues;
   submitLabel?: string;
 }
 
@@ -20,6 +28,13 @@ export function AnimalForm({
   const [weight, setWeight] = useState(initialValues.weight?.toString() ?? "");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setName(initialValues.name ?? "");
+    setSpecies(initialValues.species ?? "");
+    setBreed(initialValues.breed ?? "");
+    setWeight(initialValues.weight?.toString() ?? "");
+  }, [initialValues.name, initialValues.species, initialValues.breed, initialValues.weight]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

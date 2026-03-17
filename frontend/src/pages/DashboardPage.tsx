@@ -1,7 +1,28 @@
 import { useAnimals } from "../hooks/useAnimals";
+import { useReminders } from "../hooks/useReminders";
+import { useVaccines } from "../hooks/useVaccines";
 
 export function DashboardPage() {
   const { animals, loading } = useAnimals();
+  const { vaccines, loading: vaccinesLoading } = useVaccines();
+  const { reminders, loading: remindersLoading } = useReminders();
+
+  const now = new Date();
+  const pendingVaccinesCount = vaccines.filter(
+    (vaccine) => vaccine.nextDoseAt && new Date(vaccine.nextDoseAt) <= now
+  ).length;
+
+  const upcomingReminders = reminders
+    .filter((reminder) => !reminder.completed)
+    .sort(
+      (a, b) =>
+        new Date(a.dueDate).getTime() - new Date(b.dueDate).getTime()
+    )
+    .slice(0, 5);
+
+  const animalNameById = new Map(
+    animals.map((animal) => [animal.id, animal.name] as const)
+  );
 
   const stats = [
     {
@@ -24,7 +45,7 @@ export function DashboardPage() {
     },
     {
       label: "Pending Vaccines",
-      value: "—",
+      value: vaccinesLoading ? "—" : pendingVaccinesCount,
       icon: "💉",
       color: "bg-red-50 text-red-600",
     },
@@ -97,13 +118,36 @@ export function DashboardPage() {
 
         <div className="bg-white border border-gray-200 rounded-xl p-6">
           <h2 className="font-semibold text-gray-800 mb-4">Upcoming Reminders</h2>
-          <div className="flex flex-col items-center justify-center py-8 text-gray-300">
-            <span className="text-4xl mb-3">🔔</span>
-            <p className="text-sm">No reminders set yet</p>
-            <p className="text-xs mt-1 text-gray-400">
-              Feature coming soon
-            </p>
-          </div>
+          {remindersLoading ? (
+            <p className="text-sm text-gray-400">Loading...</p>
+          ) : upcomingReminders.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-8 text-gray-300">
+              <span className="text-4xl mb-3">🔔</span>
+              <p className="text-sm">No reminders set yet</p>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-3">
+              {upcomingReminders.map((reminder) => (
+                <div
+                  key={reminder.id}
+                  className="flex items-start gap-3 p-3 rounded-lg border border-gray-100"
+                >
+                  <div className="w-9 h-9 bg-blue-50 rounded-full flex items-center justify-center text-base">
+                    🔔
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-sm font-medium text-gray-800">{reminder.title}</p>
+                    <p className="text-xs text-gray-500 mt-1">
+                      {animalNameById.get(reminder.animalId) ?? "Unknown animal"}
+                    </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Due: {new Date(reminder.dueDate).toLocaleDateString("en-US")}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </div>

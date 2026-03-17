@@ -88,7 +88,7 @@ src/
 | `/app/animals` | Animais | CRUD completo de animais |
 | `/app/vaccines` | Vacinas | Historico e gerenciamento de vacinações |
 | `/app/vet-visits` | Consultas | Registro de visitas veterinárias |
-| `/app/feeding` | Alimentação | Planos nutricionais dos animais |
+| `/app/feedings` | Alimentação | Planos nutricionais dos animais |
 | `/app/reminders` | Lembretes | Tarefas e lembretes para cuidados |
 
 ## Pré-requisitos

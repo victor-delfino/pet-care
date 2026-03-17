@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { LandingPage } from "./pages/LandingPage";
 import { AppLayout } from "./pages/AppLayout";
 import { DashboardPage } from "./pages/DashboardPage";
@@ -18,7 +18,8 @@ export function App() {
           <Route path="animals" element={<AnimalsPage />} />
           <Route path="vaccines" element={<VaccinesPage />} />
           <Route path="vet-visits" element={<VetVisitsPage />} />
-          <Route path="feeding" element={<FeedingsPage />} />
+          <Route path="feeding" element={<Navigate to="/app/feedings" replace />} />
+          <Route path="feedings" element={<FeedingsPage />} />
           <Route path="reminders" element={<RemindersPage />} />
         </Route>
       </Routes>
